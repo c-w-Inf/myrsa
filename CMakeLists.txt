@@ -11,6 +11,8 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
 endif()
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 file(GLOB LIB_SOURCES "src/lib/*.c")
 
 add_library(mylib STATIC ${LIB_SOURCES})
