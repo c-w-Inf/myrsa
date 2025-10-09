@@ -11,3 +11,7 @@ OpenSSH's `ssh-keygen`.
 ### `myssh-keygen`
 
 Generates rsa key pairs like `ssh-keygen`.
+
+### `base64`
+
+Decodes and encodes base64.
