@@ -16,4 +16,4 @@ Generates rsa key pairs like `ssh-keygen`.
 
 Decodes and encodes base64.
 
-Contributor: JZK
+Contributor: c-w-Inf, JZK
