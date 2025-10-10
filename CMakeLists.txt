@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.10)
 project(MyProject VERSION 1.0.0 LANGUAGES C)
 
+find_package(OpenSSL REQUIRED)
+
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 
@@ -14,6 +16,8 @@ endif()
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 file(GLOB LIB_SOURCES "src/lib/*.c")
+
+include_directories(${Openssl_INCLUDE_DIR})
 
 add_library(mylib STATIC ${LIB_SOURCES})
 
@@ -32,7 +36,9 @@ foreach(app_source ${APP_SOURCES})
 
     add_executable(${app_name} ${app_source})
 
-    target_link_libraries(${app_name} PRIVATE mylib)
+    target_link_libraries(${app_name} OpenSSL::Crypto)
+
+    target_link_libraries(${app_name} mylib)
 
     target_include_directories(${app_name} PRIVATE
         ${CMAKE_SOURCE_DIR}/include
