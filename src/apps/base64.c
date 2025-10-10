@@ -8,17 +8,17 @@
 
 void decode (size_t bufsize) {
     char* buf = malloc (bufsize + 1);
-    uint8_t* bufres = malloc (base64_decode_size (bufsize));
+    uint8_t* bufres = malloc (Base64_decode_size (bufsize));
     while (fgets (buf, bufsize + 1, stdin) != NULL) {
-        fwrite (bufres, 1, base64_decode (buf, bufres), stdout);
+        fwrite (bufres, 1, Base64_decode (buf, bufres), stdout);
     }
 }
 void encode (size_t bufsize) {
     uint8_t* buf = malloc (bufsize);
-    char* bufres = malloc (base64_encode_size (bufsize));
+    char* bufres = malloc (Base64_encode_size (bufsize));
     size_t bread;
     while ((bread = fread (buf, 1, bufsize, stdin))) {
-        base64_encode (buf, bread, bufres);
+        Base64_encode (buf, bread, bufres);
         printf ("%s", bufres);
     }
 }

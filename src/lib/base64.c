@@ -4,10 +4,10 @@
 
 #include <stdint.h>
 
-size_t base64_encode_size (size_t size) { return (size + 2) / 3 * 4 + 1; }
-size_t base64_decode_size (size_t len) { return len / 4 * 3; }
+size_t Base64_encode_size (size_t size) { return (size + 2) / 3 * 4 + 1; }
+size_t Base64_decode_size (size_t len) { return len / 4 * 3; }
 
-void base64_encode (const uint8_t* data, size_t size, char* code) {
+void Base64_encode (const uint8_t* data, size_t size, char* code) {
     static const char map[] =
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         "abcdefghijklmnopqrstuvwxyz"
@@ -44,7 +44,7 @@ void base64_encode (const uint8_t* data, size_t size, char* code) {
     *code = 0;
 }
 
-size_t base64_decode (const char* code, uint8_t* data) {
+size_t Base64_decode (const char* code, uint8_t* data) {
     static const uint8_t map[256] = {
         128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128,
         128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 62,
