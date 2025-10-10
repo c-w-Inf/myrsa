@@ -12,15 +12,18 @@ void decode (size_t bufsize) {
     while (fgets (buf, bufsize + 1, stdin) != NULL) {
         fwrite (bufres, 1, Base64_decode (buf, bufres), stdout);
     }
+    free (buf);
+    free (bufres);
 }
 void encode (size_t bufsize) {
     uint8_t* buf = malloc (bufsize);
     char* bufres = malloc (Base64_encode_size (bufsize));
-    size_t bread;
-    while ((bread = fread (buf, 1, bufsize, stdin))) {
+    for (size_t bread; (bread = fread (buf, 1, bufsize, stdin));) {
         Base64_encode (buf, bread, bufres);
         printf ("%s", bufres);
     }
+    free (buf);
+    free (bufres);
 }
 
 int main (int argc, char** argv) {
