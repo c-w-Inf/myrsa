@@ -3,8 +3,6 @@
 #pragma once
 
 #include <boost/multiprecision/cpp_int.hpp>
-#include <boost/random.hpp>
-#include <boost/random/random_device.hpp>
 
 namespace rsa {
 
@@ -18,7 +16,7 @@ std::ostream& operator<< (std::ostream& os, const rsa_key_pub& k) noexcept;
 
 class rsa_key_pub {
  public:
-    rsa_key_pub (cpp_int n, cpp_int e) noexcept;
+    rsa_key_pub (cpp_int n = 0, cpp_int e = 0): n (n), e (e) {};
 
     cpp_int encrypt (const cpp_int& a) const noexcept;
 
@@ -29,8 +27,10 @@ class rsa_key_pub {
 
     friend class rsa_key;
 
+    void debug_print () const noexcept;
+
  private:
-    const cpp_int n, e;
+    cpp_int n, e;
 };
 
 class rsa_key {
@@ -40,12 +40,15 @@ class rsa_key {
     explicit rsa_key (const size_t len = default_len) noexcept;
 
     const rsa_key_pub& get_pub () const noexcept;
+    cpp_int encrypt (const cpp_int& a) const noexcept;
 
     friend std::ostream& operator<< (std::ostream& os, const rsa_key& k) noexcept;
 
+    void debug_print () const noexcept;
+
  private:
-    const rsa_key_pub pub;
-    const cpp_int d, p, q;
+    rsa_key_pub pub;
+    cpp_int d, p, q;
 };
 
 }  // namespace rsa
