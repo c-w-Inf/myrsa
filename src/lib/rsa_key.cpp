@@ -18,7 +18,8 @@ void rsa_key_pub::debug_print () const noexcept {
 rsa_key::rsa_key (const size_t len) noexcept {
     assert (len <= 8192);
 
-    const cpp_int pql = quick_pow (2, len - 2), pqr = 2 * pql;
+    const cpp_int pql = quick_pow (2, len / 2), pqr = 2 * pql;
+    // std::cerr<<"pql = "<<pql<<std::endl;
     p = randPrime (pql, pqr), q = p;
     while (q == p) q = randPrime (pql, pqr);
     cpp_int n = p * q;

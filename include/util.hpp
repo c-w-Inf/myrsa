@@ -10,7 +10,7 @@
 using boost::multiprecision::cpp_int;
 
 namespace rsa::keygen_mathtools {
-const int SEIVE_LIMIT = 20000;
+const int SEIVE_LIMIT = 10000;
 extern std::vector<int> Ps;
 extern cpp_int pri_prod;
 

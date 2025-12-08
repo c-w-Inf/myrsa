@@ -87,7 +87,7 @@ cpp_int randNum (cpp_int l, cpp_int r) { return gen () % (r - l + 1) + l; }
 cpp_int randPrime (cpp_int l, cpp_int r) {
     get_small_prime ();
 
-    cpp_int R = randNum (1, pri_prod - 1);
+    // cpp_int R = randNum (1, min(r , pri_prod - 1) );
     // cpp_int Q=randNum(l-R)
 
     cpp_int x = randNum (l, r);
